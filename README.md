@@ -4,6 +4,6 @@ Project overview : This project employs the BERT (Bidirectional Encoder Represen
 
 Dependencies : streamlit,transformers,pyPDF2,os,Torch
 
-Usage : 1.first run the script help.py to download the pre-trained model and tokenizer which will further used in the main script.
-        2.then open the terminal where we are running the script and run the command 'streamlit run app.py' to host the web application.
+Usage : 1.first run the script help.py to download the pre-trained model and tokenizer which will further used in the main script.<br/>
+        2.then open the terminal where we are running the script and run the command 'streamlit run app.py' to host the web application.<br/>
         3.upload the file on web interface and then write your query and press enter.Now,you will get the desired answer.
