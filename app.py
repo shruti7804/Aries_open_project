@@ -19,6 +19,10 @@ with st.sidebar:
 def main():
     st.header("PDF ANSWERING AI")
 
+    doctype = st.selectbox(
+        'DocType',['Resume/Form','paragraph']
+    )
+
     pdf = st.file_uploader("Upload your PDF", type='pdf')
 
     if pdf is not None:
@@ -57,9 +61,12 @@ def main():
                     start += max_chunk_length - overlap
                 return chunks
 
-
-            max_chunk_length = 500
-            overlap = 100 
+            if doctype == 'Resume/Form':
+                max_chunk_length = 512
+                overlap = 0
+            else:
+                max_chunk_length = 512
+                overlap = 128
 
             chunks = create_chunks(text, max_chunk_length, overlap)
 
@@ -81,5 +88,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
