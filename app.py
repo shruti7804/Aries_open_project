@@ -5,7 +5,6 @@ from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
 from PyPDF2 import PdfReader
 import textwrap
 
-# Streamlit Sidebar
 with st.sidebar:
     st.title('PDF Answering AI')
     st.markdown('''
@@ -17,11 +16,9 @@ with st.sidebar:
     ''')
     st.write('Made by [Amey Somvanshi](https://www.linkedin.com/in/amey-somvanshi-66395225b)')
 
-# Main Function
 def main():
     st.header("PDF ANSWERING AI")
 
-    # Upload a PDF file
     pdf = st.file_uploader("Upload your PDF", type='pdf')
 
     if pdf is not None:
@@ -36,7 +33,6 @@ def main():
         model_path = os.path.join('pretrained', 'model')
         tokenizer_path = os.path.join('pretrained', 'tokenizer')
 
-        # Check if the model and tokenizer directories exist
         if not os.path.exists(model_path):
             st.error(f"Model directory not found: {model_path}")
             return
@@ -45,7 +41,6 @@ def main():
             st.error(f"Tokenizer directory not found: {tokenizer_path}")
             return
 
-        # Load the model and tokenizer
         model = AutoModelForQuestionAnswering.from_pretrained(model_path, local_files_only=True)
         tokenizer = AutoTokenizer.from_pretrained(tokenizer_path, local_files_only=True)
         nlp = pipeline('question-answering', model=model, tokenizer=tokenizer)
@@ -53,7 +48,6 @@ def main():
         query = st.text_input("Ask questions about your PDF file:")
 
         if query:
-            # Split the text into overlapping chunks to handle long contexts
             def create_chunks(text, max_chunk_length, overlap):
                 chunks = []
                 start = 0
@@ -65,7 +59,7 @@ def main():
 
 
             max_chunk_length = 500
-            overlap = 100  # Overlap between chunks to catch split information
+            overlap = 100 
 
             chunks = create_chunks(text, max_chunk_length, overlap)
 
