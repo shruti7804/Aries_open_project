@@ -14,7 +14,7 @@ with st.sidebar:
     its robustness and accuracy in question-answering tasks
 
     ''')
-    st.write('Made by [Amey Somvanshi](https://www.linkedin.com/in/amey-somvanshi-66395225b)')
+   
 
 def main():
     st.header("PDF ANSWERING AI")
